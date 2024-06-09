@@ -3,21 +3,30 @@ body{
 }
 .nav-bar{
 color: rgb(24, 74, 119);
+
 }
-.carrosseltamanho{
-    max-width: 252px;
-    max-height: 165px;
+.nav-item{
+    font-size: 2rem;
+    font-family: 'Arial Narrow Bold';
 }
+.navbar-brand{
+    font-family: 'Arial Narrow Bold';
+    font-size: 4rem;
+}
+
 .footer{
+   
     background-color: #f0a91d;
 }
 footer a {
     color: #000 !important; /* Força a cor preta */
     text-decoration: none;
+    font-size: 2rem; 
 }
 .footer .text-body-emphasis {
     margin-top: 20px;
-    font-size: 3rem; /* Define o tamanho da fonte para 1.5 vezes o tamanho padrão */
+    font-size: 5rem; /* Define o tamanho da fonte para 1.5 vezes o tamanho padrão */
+    font-family: 'Arial Narrow Bold';
 }
 .img-fluid {
     margin-left: 20%;
@@ -25,7 +34,7 @@ footer a {
 
     
 
-.container {
+.container { 
     height: 100vh;
 }
 
