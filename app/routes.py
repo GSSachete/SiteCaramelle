@@ -1,5 +1,5 @@
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
 from app.models import User
 
@@ -17,17 +17,18 @@ def login():
         # Verifica se o usuário existe no banco de dados
         user = User.query.filter_by(email=email).first()
 
-        if user and check_password_hash(user.password_hash, password):
-            # Se as credenciais estiverem corretas, redirecione para a página principal ou qualquer outra página desejada
-            # Neste caso, redirecionarei para a página inicial
+        if user and user.check_password(password):
+            # Autentica o usuário
+            login_user(user)
             flash('Login bem-sucedido!', 'success')
             return redirect(url_for('index'))
         else:
-            # Se as credenciais estiverem incorretas, exiba uma mensagem de erro
+            # Se as credenciais estiverem incorretas, exibe uma mensagem de erro
             flash('Credenciais inválidas. Por favor, tente novamente.', 'danger')
             return redirect(url_for('login'))
 
     return render_template('login.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -49,8 +50,8 @@ def register():
             return redirect(url_for('register'))
 
         # Cria um novo usuário e adiciona ao banco de dados
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        new_user = User(username=username, email=email, password_hash=hashed_password)
+        new_user = User(username=username, email=email)
+        new_user.set_password(password)  # Define a senha de forma segura
         db.session.add(new_user)
         db.session.commit()
 
@@ -67,10 +68,23 @@ def agendamento():
 def catalogo():
     return render_template('catalogo.html')
 
+@app.route('/estoque')
+@login_required
+def estoque():
+    return render_template('estoque.html')
+
+
 @app.route('/sobre')
 def sobre():
     return render_template('sobre.html')
+
 @app.route('/users')
+@login_required
 def users():
     users = User.query.all()
     return render_template('users.html', users=users)
+@app.route('/logout')
+def logout():
+    logout_user()
+    # Redirecione para a página de login, ou qualquer outra página desejada após o logout
+    return redirect(url_for('index'))
