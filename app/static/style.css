@@ -3,6 +3,8 @@ body{
 }
 .nav-bar{
 color: rgb(24, 74, 119);
+border: none;
+box-shadow: none
 
 }
 .nav-item{
@@ -15,6 +17,14 @@ color: rgb(24, 74, 119);
 }
 
 .footer{
+   
+    background-color: #f0a91d;
+}
+.footer_catalogo{
+    margin-top: 50px;
+    background-color: #f0a91d;
+}
+.catalogo{
    
     background-color: #f0a91d;
 }
