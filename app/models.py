@@ -18,3 +18,12 @@ class User(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    descricao = db.Column(db.Text, nullable=False)
+    preco = db.Column(db.Float, nullable=False)
+    imagem = db.Column(db.String(255), nullable=False)  # Caminho da imagem 
+
+
