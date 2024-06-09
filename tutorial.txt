@@ -1,0 +1,12 @@
+python -m venv venv
+.\venv\Scripts\activate                        ativar ambiente
+pip install flask 
+pip install python-dotenv
+pip install Flask Flask-SQLAlchemy
+>>> from app import app, db
+>>> with app.app_context():
+...     db.create_all()
+...
+python createdb.py
+
+python sitecaramelle.py
