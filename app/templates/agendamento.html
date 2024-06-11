@@ -38,26 +38,22 @@
 
     <div class="container mt-5">
       <h2 class="mb-4">Agendamento para encomendas</h2>
-      <form>
+      <form method="POST">
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome">
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Seu email">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Seu email">
         </div>
         <div class="mb-3">
           <label for="data" class="form-label">Data</label>
-          <input type="date" class="form-control" id="data">
+          <input type="date" class="form-control" id="data" name="data">
         </div>
         <div class="mb-3">
-          <label for="hora" class="form-label">Hora</label>
-          <input type="time" class="form-control" id="hora">
-        </div>
-        <div class="mb-3">
-          <label for="mensagem" class="form-label">Descrição</label>
-          <textarea class="form-control" id="mensagem" rows="3" placeholder="Escreva a quantidade e tipos desejados"></textarea>
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Escreva a quantidade e tipos desejados"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Agendar</button>
       </form>

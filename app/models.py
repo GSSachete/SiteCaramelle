@@ -24,6 +24,15 @@ class Product(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     preco = db.Column(db.Float, nullable=False)
-    imagem = db.Column(db.String(255), nullable=False)  # Caminho da imagem 
+    imagem = db.Column(db.String(255), nullable=False)  
 
 
+class Agendamento(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)  
+    data = db.Column(db.Date, nullable=False)
+    descricao = db.Column(db.String(500), nullable=False)  
+
+
+    

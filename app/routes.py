@@ -2,10 +2,13 @@ from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
 from app.models import User
+from app.models import Agendamento
 from app.models import Product
 from werkzeug.utils import secure_filename
 import os
 from pathlib import Path
+from datetime import datetime
+
 
 @app.route('/')
 @app.route('/index')
@@ -64,9 +67,7 @@ def register():
 
     return render_template('register.html')
 
-@app.route('/agendamento')
-def agendamento():
-    return render_template('agendamento.html')
+
 
 @app.route('/catalogo', methods=['GET', 'POST'])
 def catalogo():
@@ -145,5 +146,35 @@ def logout():
 def produtos():
     produtos = Product.query.all()
     return render_template('produtos.html', produtos=produtos)
+
+@app.route('/agendamento', methods=['GET', 'POST'])
+def agendamento():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        data = request.form['data']
+        descricao = request.form['descricao']
+
+
+        # Converte as strings em objetos date e time
+        data_formatada = datetime.strptime(data, '%Y-%m-%d').date()
+
+        novo_agendamento = Agendamento(
+            nome=nome,
+            email=email,
+            data=data_formatada,
+            descricao=descricao
+        )
+        db.session.add(novo_agendamento)
+        db.session.commit()
+        
+        
+    
+    return render_template('agendamento.html')
+
+@app.route('/minhaagenda')
+def minhaagenda():
+    agendamentos = Agendamento.query.all()
+    return render_template('minhaagenda.html', agendamentos=agendamentos)
 
 
