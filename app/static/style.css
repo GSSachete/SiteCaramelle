@@ -1,3 +1,4 @@
+
 body{
     background-color: #F9E2AF;
 }
@@ -6,6 +7,9 @@ color: rgb(24, 74, 119);
 border: none;
 box-shadow: none
 
+}
+.body_catalogo{
+    background-color: #f0a91d;
 }
 .nav-item{
     font-size: 2rem;
